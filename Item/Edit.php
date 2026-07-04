@@ -42,7 +42,7 @@ class Edit extends AbstractItem
 // FIX start: avoid array warning
 //            if (auth_quickaclcheck($INFO['id']) < AUTH_READ) throw new \RuntimeException("no permission to read");
             if (!isset($INFO['id']) || auth_quickaclcheck($INFO['id']) < AUTH_READ) {
-                throw new RuntimeException("no permission to read");
+                throw new \RuntimeException("no permission to read");
 			}
 // FIX end
             $this->params = ['do' => ''];
