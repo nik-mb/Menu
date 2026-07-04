@@ -39,7 +39,12 @@ class Edit extends AbstractItem
                 $this->accesskey = 'v';
             }
         } else {
-            if (auth_quickaclcheck($INFO['id']) < AUTH_READ) throw new \RuntimeException("no permission to read");
+// FIX start: avoid array warning
+//            if (auth_quickaclcheck($INFO['id']) < AUTH_READ) throw new \RuntimeException("no permission to read");
+            if (!isset($INFO['id']) || auth_quickaclcheck($INFO['id']) < AUTH_READ) {
+                throw new RuntimeException("no permission to read");
+			}
+// FIX end
             $this->params = ['do' => ''];
             $this->type = 'show';
             $this->accesskey = 'v';
